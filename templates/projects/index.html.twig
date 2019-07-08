@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mes projets' %}
+
+{% block body %}
+
+    <h1>Liste de tous mes projets sdb:<h1>
+        {% for project in projectsBathroom %}
+        <a href="{{ path('project.show', {slug: project.slug, id: project.id}) }}">{{ project.bathroomProjectName }}</a><br>   
+        {% endfor %}
+
+        <br><h1>Liste de tous mes projets chambre:<h1>
+        {% for project in projectsRoom %}
+        <a href="{{ path('project.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a><br>   
+        {% endfor %}
+
+    <h1>Nos peintures</h1>
+    {% include 'product/paint.index.html.twig' %}<br>
+
+    <h1>Nos baignoires</h1>
+    {% include 'product/bathtub.index.html.twig' %}<br>
+
+    <h1>Nos douches</h1>
+    {% include 'product/shower.index.html.twig' %}
+
+    <h1>Nos éviers</h1>
+    {% include 'product/sink.index.html.twig' %}
+
+    <h1>Nos toilettes</h1>
+    {% include 'product/toilets.index.html.twig' %}
+
+
+{% endblock %}

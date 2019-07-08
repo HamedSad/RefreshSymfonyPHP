@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mes projets' %}
+
+{% block body %}
+
+<h1>Liste de tous mes projets sdb<h1><br>
+    {% for project in projectsBathroom %}
+        {{ project.bathroomProjectName }}<br>   
+    {% endfor %}
+    
+
+{% endblock %}
