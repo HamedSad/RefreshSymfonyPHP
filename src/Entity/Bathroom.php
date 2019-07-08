@@ -12,6 +12,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Bathroom
 {
+
+    const GROUND = [
+        0=>'moquette' ,
+        1=>'lino',
+        2=>'parquet',
+        3=>'carrelage',
+        4=>'autre'];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -46,6 +54,7 @@ class Bathroom
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $bathroomProjectName;
 
@@ -68,6 +77,12 @@ class Bathroom
      * @ORM\Column(type="integer")
      */
     private $userId;
+
+    private $date;
+
+    public function __construct(){
+        $this->date = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -125,6 +140,11 @@ class Bathroom
         $this->bathroomGround = $bathroomGround;
 
         return $this;
+    }
+
+    public function getGroundType() : string {
+        return self::GROUND[$this->bathroomGround];
+
     }
 
     public function getBathroomHeight()

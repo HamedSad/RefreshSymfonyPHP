@@ -4,12 +4,21 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
  */
 class Room
 {
+
+    const GROUND = [
+        0=>'moquette' ,
+        1=>'lino',
+        2=>'parquet',
+        3=>'carrelage',
+        4=>'autre'];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -43,9 +52,14 @@ class Room
     private $roomProjectName;
 
     /**
+     *
      * @ORM\Column(type="integer")
      */
     private $userId;
+
+    public function __construct(){
+        $this->date = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -91,6 +105,11 @@ class Room
         $this->roomGround = $roomGround;
 
         return $this;
+    }
+
+    public function getGroundType() : string {
+        return self::GROUND[$this->roomGround];
+
     }
 
     public function getRoomHeight(): ?int
