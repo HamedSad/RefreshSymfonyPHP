@@ -1,11 +1,59 @@
 {% extends 'base.html.twig' %}
 
+{% block title 'Projet ' ~ project.bathroomProjectName %}
+
 {% block body %}
 <div class="jumbotron">
     <div class="container">
-        <h1>{{project.bathroomProjectName}}<h1>
         
+        <h1>Projet {{project.bathroomProjectName}}<h1>
+                Récapitulatif : <br>
+                Surface {{project.bathroomArea}} m²<br>
+                Hauteur sur plafond {{project.bathroomHeight}} m<br>
+                Sol en {{project.groundType}}<br><br>
+
+                {% if project.bathroomBath == 1 %}
+                    Installation d'une baignoire<br>
+                {% else %}
+                     Pas d'installation de baignoire<br>
+                {% endif %}
+
+                {% if project.bathroomShower == 1 %}
+                    Installation d'une douche<br>
+                {% else %}
+                     Pas d'installation de douche<br>
+                {% endif %}
+
+                {% if project.bathroomSink == 1 %}
+                    Installation d'un évier<br>
+                {% else %}
+                     Pas d'installation de évier<br>
+                {% endif %}
+
+                {% if project.bathroomWc == 1 %}
+                    Installation de toilettes<br>
+                {% else %}
+                     Pas d'installation de toilettes<br>
+                {% endif %}
     </div>
 </div>
 
+{% include 'product/paint.index.html.twig' %}<br> 
+
+{% if project.bathroomBath == 1 %}
+    {% include 'product/bathtub.index.html.twig' %}<br>
+{% endif %}
+
+{% if project.bathroomShower == 1 %}
+    {% include 'product/shower.index.html.twig' %}<br>
+{% endif %}
+
+{% if project.bathroomSink == 1 %}
+    {% include 'product/sink.index.html.twig' %}<br>
+{% endif %}
+
+{% if project.bathroomWc == 1 %}
+    {% include 'product/toilets.index.html.twig' %}<br>
+{% endif %}
+     
 {% endblock %}

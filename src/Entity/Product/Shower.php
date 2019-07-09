@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity\Product;
+use Cocur\Slugify\Slugify;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +35,11 @@ class Shower
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSlug(){
+
+        return (new Slugify())->slugify($this->showerName);
     }
 
     public function getShowerName(): ?string

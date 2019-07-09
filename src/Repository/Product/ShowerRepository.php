@@ -25,6 +25,7 @@ class ShowerRepository extends ServiceEntityRepository
     */
     public function findAllVisibleShower():array{
         return $this->createQueryBuilder('p')
+            ->orderBy('p.showerPrice', 'ASC')
             ->getQuery()
             ->getResult();
     }

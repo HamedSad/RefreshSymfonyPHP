@@ -129,6 +129,10 @@ class Bathroom
 
         return $this;
     }
+    
+    public function getFormatedDate() : string{
+        return date_format($this->date, date('d-m-Y'));
+    }
 
     public function getBathroomGround(): ?int
     {

@@ -1,3 +1,14 @@
-{% for toilets in productToilets %}
-    {{ toilets.toiletsName }}   {{ toilets.toiletsPrice }} €<br>   
-{% endfor %}
+<h1>Nos toilettes</h1>
+<hr>
+<div class="card-deck">
+    {% for toilets in productToilets %}
+        <div class="card">
+            <img class="card-img-top" src="{{ toilets.toiletsUrlImage }}" alt="Card image cap">
+            <div class="card-body">
+                <a href="{{ path('productToilets.show', {slug: toilets.slug, id: toilets.id}) }}">
+                    <h6 class="card-title">{{ toilets.toiletsName }} </h6></a>
+                <p class="card-text">{{ toilets.toiletsPrice }} €</p>
+            </div>
+        </div>
+    {% endfor %}     
+</div>

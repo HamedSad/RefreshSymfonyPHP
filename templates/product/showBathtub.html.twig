@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title product.bathtubName %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{product.bathtubName}}<h1>
+            Prix : {{product.bathtubPrice}} €<br>
+            <img src="{{product.bathtubUrlImage}}">      
+    </div>
+</div>
+
+{% endblock %}

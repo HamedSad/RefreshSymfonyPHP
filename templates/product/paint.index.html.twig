@@ -1,3 +1,14 @@
-{% for paint in productPaint %}
-    {{ paint.paintName }}<br>   
-{% endfor %}
+<h1>Nos peintures</h1>
+<hr>
+<div class="card-deck">
+        {% for paint in productPaint %}
+        <div class="card">
+            <img class="card-img-top" src="{{ paint.paintUrlImage }}" alt="Card image cap">
+            <div class="card-body">
+                <a href="{{ path('productPaint.show', {slug: paint.slug, id: paint.id}) }}">
+                        <h6 class="card-title">{{ paint.paintName }} </h6></a>
+                <p class="card-text">{{ paint.paintPrice }} €</p>
+            </div>
+        </div> 
+        {% endfor %}     
+</div>

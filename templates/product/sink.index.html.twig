@@ -1,3 +1,14 @@
-{% for sink in productSink %}
-    {{ sink.sinkName }}<br>   
-{% endfor %}
+<h1>Nos éviers</h1>
+<hr>
+<div class="card-deck">
+    {% for sink in productSink %}
+        <div class="card">
+            <img class="card-img-top" src="{{ sink.sinkUrlImage }}" alt="Card image cap">
+            <div class="card-body">
+                <a href="{{ path('productSink.show', {slug: sink.slug, id: sink.id}) }}">
+                    <h6 class="card-title">{{ sink.sinkName }} </h6></a>
+                <p class="card-text">{{ sink.sinkPrice }} €</p>
+            </div>
+        </div>
+    {% endfor %}     
+</div>

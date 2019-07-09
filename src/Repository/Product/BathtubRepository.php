@@ -25,6 +25,7 @@ class BathtubRepository extends ServiceEntityRepository
     */
     public function findAllVisibleBathtub():array{
         return $this->createQueryBuilder('p')
+            ->orderBy('p.bathtubPrice', 'ASC')
             ->getQuery()
             ->getResult();
     }

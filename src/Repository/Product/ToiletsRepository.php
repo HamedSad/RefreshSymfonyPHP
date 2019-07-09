@@ -25,6 +25,7 @@ class ToiletsRepository extends ServiceEntityRepository
     */
     public function findAllVisibleToilets():array{
         return $this->createQueryBuilder('p')
+            ->orderBy('p.toiletsPrice', 'ASC')
             ->getQuery()
             ->getResult();
     }

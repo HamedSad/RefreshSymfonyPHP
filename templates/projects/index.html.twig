@@ -6,30 +6,23 @@
 
     <h1>Liste de tous mes projets sdb:<h1>
         {% for project in projectsBathroom %}
-        Sol en {{project.groundType}}
-        <a href="{{ path('project.show', {slug: project.slug, id: project.id}) }}">{{ project.bathroomProjectName }}</a><br>   
+        <a href="{{ path('projectBath.show', {slug: project.slug, id: project.id}) }}">
+            {{ project.bathroomProjectName }}</a><br>   
         {% endfor %}
 
         <br><h1>Liste de tous mes projets chambre:<h1>
         {% for project in projectsRoom %}
-        Sol en {{ project.groundType }}
-        <a href="{{ path('project.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a><br>   
+        <a href="{{ path('projectRoom.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a><br>   
         {% endfor %}
 
-    <h1>Nos peintures</h1>
-    {% include 'product/paint.index.html.twig' %}<br>
+    {% include 'product/paint.index.html.twig' %}<br> 
 
-    <h1>Nos baignoires</h1>
     {% include 'product/bathtub.index.html.twig' %}<br>
 
-    <h1>Nos douches</h1>
     {% include 'product/shower.index.html.twig' %}
 
-    <h1>Nos éviers</h1>
     {% include 'product/sink.index.html.twig' %}
 
-    <h1>Nos toilettes</h1>
     {% include 'product/toilets.index.html.twig' %}
-
 
 {% endblock %}

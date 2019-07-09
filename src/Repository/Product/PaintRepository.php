@@ -25,6 +25,7 @@ class PaintRepository extends ServiceEntityRepository
     */
     public function findAllVisiblePaint():array{
         return $this->createQueryBuilder('p')
+            ->orderBy('p.paintPrice', 'ASC')
             ->getQuery()
             ->getResult();
     }

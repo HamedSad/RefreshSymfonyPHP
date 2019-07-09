@@ -25,6 +25,7 @@ class SinkRepository extends ServiceEntityRepository
     */
     public function findAllVisibleSink():array{
         return $this->createQueryBuilder('p')
+            ->orderBy('p.sinkPrice', 'ASC')
             ->getQuery()
             ->getResult();
     }

@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title 'Projet ' ~ project.roomProjectName %}
+
 {% block body %}
 <div class="jumbotron">
     <div class="container">
-        <h1>{{project.roomProjectName}}<h1>
-        
+        <h1>Projet {{project.roomProjectName}}<h1>
+            Récapitulatif : <br>
+            Surface {{project.roomArea}} m²<br>
+            Hauteur sur plafond {{project.roomHeight}} m<br>
+            Sol en {{project.groundType}}<br><br>        
     </div>
 </div>
 
-
-
+{% include 'product/paint.index.html.twig' %}<br> 
 
 {% endblock %}

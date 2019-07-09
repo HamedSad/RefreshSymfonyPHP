@@ -3,6 +3,7 @@
 namespace App\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PaintRepository")
@@ -34,6 +35,11 @@ class Paint
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSlug(){
+
+        return (new Slugify())->slugify($this->paintName);
     }
 
     public function getPaintName(): ?string
