@@ -9,10 +9,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BathroomRepository")
+ * @UniqueEntity("bathroomProjectName")
  */
 class Bathroom
 {
 
+    const YESNO = [
+        0=>'Non',
+        1=>'Oui'
+    ];
     const GROUND = [
         0=>'moquette' ,
         1=>'lino',
@@ -53,6 +58,8 @@ class Bathroom
     private $bathroomHeight;
 
     /**
+     *@Assert\Length( min = 10,  
+     * minMessage = "La description doit comporter au minimum {{ limit }} caractères")
      * @ORM\Column(type="string", length=255)
      *
      */
@@ -81,7 +88,7 @@ class Bathroom
     private $date;
 
     public function __construct(){
-        $this->date = new \DateTime();
+        $this->bathroomDate = new \DateTime();
     }
 
     public function getId(): ?int
@@ -131,7 +138,7 @@ class Bathroom
     }
     
     public function getFormatedDate() : string{
-        return date_format($this->date, date('d-m-Y'));
+        return date_format($this->bathroomDate, date('d-m-Y'));
     }
 
     public function getBathroomGround(): ?int

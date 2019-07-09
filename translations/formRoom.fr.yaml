@@ -1,0 +1,13 @@
+Room project name : Nom du projet
+Room area : Superficie (en m²)
+Room height : Hauteur sur plafond (en m)
+Room ground : Type de sol
+
+Bathroom project name : Nom du projet
+Bathroom area : Superficie (en m²)
+Bathroom height : Hauteur sur plafond (en m)
+Bathroom ground : Type de sol
+Bathroom bath : Souhaitez-vous l'installation d'une baignoire?
+Bathroom shower : Souhaitez-vous l'installation d'une douche?
+Bathroom sink : Souhaitez-vous l'installation d'un lavabo?
+Bathroom w c : Souhaitez-vous l'installation de WC?

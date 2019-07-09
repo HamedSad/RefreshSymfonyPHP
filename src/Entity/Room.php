@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
+ * @UniqueEntity("roomProjectName")
  */
 class Room
 {
@@ -47,6 +49,9 @@ class Room
     private $roomHeight;
 
     /**
+     *
+     * @Assert\Length( min = 10,  
+     * minMessage = "La description doit comporter au minimum {{ limit }} caractères")
      * @ORM\Column(type="string", length=255)
      */
     private $roomProjectName;
@@ -58,7 +63,7 @@ class Room
     private $userId;
 
     public function __construct(){
-        $this->date = new \DateTime();
+        $this->roomDate = new \DateTime();
     }
 
     public function getId(): ?int
@@ -93,6 +98,10 @@ class Room
         $this->roomDate = $roomDate;
 
         return $this;
+    }
+
+    public function getFormatedDate() : string{
+        return date_format($this->roomDate, date('d-m-Y'));
     }
 
     public function getRoomGround(): ?int

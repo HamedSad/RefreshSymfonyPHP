@@ -4,16 +4,33 @@
 
 {% block body %}
 
+    <!-- Pour toutes les actions ayant un message de confirmation -->
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">{{message}}</div>
+    {% endfor %}
+
     <h1>Liste de tous mes projets sdb:<h1>
         {% for project in projectsBathroom %}
         <a href="{{ path('projectBath.show', {slug: project.slug, id: project.id}) }}">
-            {{ project.bathroomProjectName }}</a><br>   
+            {{ project.bathroomProjectName }}</a>  
+            édité le {{ project.formatedDate }}<br>
         {% endfor %}
+
+        <div class="text-right">
+            <!-- La route de la methode que l'on va utiliser -->
+            <a href="{{ path('projectBathroom.new') }}" class="btn btn-primary">Créer un nouveau projet salle de bain</a>
+        </div>
 
         <br><h1>Liste de tous mes projets chambre:<h1>
         {% for project in projectsRoom %}
-        <a href="{{ path('projectRoom.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a><br>   
+        <a href="{{ path('projectRoom.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a>
+        édité le {{ project.formatedDate }} <br>
         {% endfor %}
+
+        <div class="text-right">
+            <!-- La route de la methode que l'on va utiliser -->
+            <a href="{{ path('projectRoom.new') }}" class="btn btn-primary">Créer un nouveau projet chambre</a>
+        </div>
 
     {% include 'product/paint.index.html.twig' %}<br> 
 

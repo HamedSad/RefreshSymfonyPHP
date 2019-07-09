@@ -30,6 +30,7 @@ class RoomRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+ 
     // /**
     //  * @return Room[] Returns an array of Room objects
     //  */

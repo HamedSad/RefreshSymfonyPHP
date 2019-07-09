@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Créer un projet chambre' %}
+
+{% block body %}
+ 
+    <div class='container'> 
+        {# Le 3 méthodes permettent d'afficher le formulaire, pour le modifier : config/packages/twig.yaml #}
+        {{ form_start(form)}}
+            <div class="row">
+                {# Méthode form_row pour afficher le champs qui correspond à sa propriété #}
+                <div class="col-md-4">{{form_row(form.roomProjectName)}}</div>
+                <div class="col-md-4">{{form_row(form.roomArea)}}</div>
+                <div class="col-md-4">{{form_row(form.roomHeight)}}</div>
+                <div class="col-md-4">{{form_row(form.roomGround)}}</div>
+                <div class="col-md-3">{{form_row(form.userId)}}</div>
+            </div>
+        {{ form_rest(form)}}
+            <button class="btn btn-primary">{{button|default('Créer')}}</button>
+        {{ form_end(form)}}
+        
+        </div>
+
+{% endblock %}

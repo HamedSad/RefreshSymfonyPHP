@@ -12,6 +12,10 @@ use App\Repository\Product\BathtubRepository;
 use App\Repository\Product\ShowerRepository;
 use App\Repository\Product\SinkRepository;
 use App\Repository\Product\ToiletsRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Room;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\RoomType;
 
 class ProjectController extends AbstractController{
 
@@ -53,6 +57,8 @@ public function index() : Response{
         'productToilets'=>$productToilets
     ]);
 }
+
+
 
 // /**
 // *@Route("/mesProjets/{slug}-{id}", name="project.show", requirements={"slug": "[a-z0-9\-]*"})
