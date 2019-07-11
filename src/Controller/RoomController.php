@@ -20,7 +20,7 @@ class RoomController extends AbstractController{
 *@var RoomRepository
 *
 */
-    private $repository;
+private $repository;
 
 //injection de dépendance pour le lier avec le repository
 public function __construct(RoomRepository $repository, PaintRepository $paintRepo, 
@@ -39,11 +39,10 @@ public function show($slug, $id) : Response{
 
     $project =$this->repository->find($id);
     $productPaint = $this->paintRepo->findAllVisiblePaint();
-    
     return $this->render('projects/showRoom.index.html.twig',[
         'project' => $project,
         'current_menu' => 'projects',
-        'productPaint'=>$productPaint,
+        'productPaint'=>$productPaint
     ]);
 
     }

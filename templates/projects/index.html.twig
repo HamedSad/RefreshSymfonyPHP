@@ -9,11 +9,10 @@
         <div class="alert alert-success">{{message}}</div>
     {% endfor %}
 
-    <h1>Liste de tous mes projets sdb:<h1>
+    <h1>Mes projets salle de bain :<h1>
         {% for project in projectsBathroom %}
         <a href="{{ path('projectBath.show', {slug: project.slug, id: project.id}) }}">
-            {{ project.bathroomProjectName }}</a>  
-            édité le {{ project.formatedDate }}<br>
+            {{ project.bathroomProjectName }}</a> <br>
         {% endfor %}
 
         <div class="text-right">
@@ -21,10 +20,10 @@
             <a href="{{ path('projectBathroom.new') }}" class="btn btn-primary">Créer un nouveau projet salle de bain</a>
         </div>
 
-        <br><h1>Liste de tous mes projets chambre:<h1>
+        <br><h1>Mes projets chambre:<h1>
         {% for project in projectsRoom %}
         <a href="{{ path('projectRoom.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a>
-        édité le {{ project.formatedDate }} <br>
+        <br>
         {% endfor %}
 
         <div class="text-right">

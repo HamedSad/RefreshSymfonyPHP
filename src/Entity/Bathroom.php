@@ -85,8 +85,6 @@ class Bathroom
      */
     private $userId;
 
-    private $date;
-
     public function __construct(){
         $this->bathroomDate = new \DateTime();
     }
