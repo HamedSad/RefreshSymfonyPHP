@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{# {% block title 'Gérer le projet' ~ roomProjectName %} #}
+
+<div class='container'> 
+    <h1>Modifier le projet</h1>
+    <div class='container'> 
+        {# Le 3 méthodes permettent d'afficher le formulaire, pour le modifier : config/packages/twig.yaml #}
+        {{ form_start(form)}}
+            <div class="row">
+                {# Méthode form_row pour afficher le champs qui correspond à sa propriété #}
+                <div class="col-md-4">{{form_row(form.bathroomProjectName)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomArea)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomHeight)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomGround)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomBath)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomShower)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomSink)}}</div>
+                <div class="col-md-4">{{form_row(form.bathroomWC)}}</div>
+                <div class="col-md-4">{{form_row(form.userId)}}</div>
+            </div>
+        {{ form_rest(form)}}
+            <button class="btn btn-primary">{{button|default('Modifier')}}</button>
+        {{ form_end(form)}}
+        
+        </div>
+
+
+</div>
+
+{% endblock %}

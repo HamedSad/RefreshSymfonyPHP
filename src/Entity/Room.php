@@ -29,7 +29,7 @@ class Room
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $roomArea;
 
@@ -44,7 +44,7 @@ class Room
     private $roomGround;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $roomHeight;
 
@@ -76,7 +76,7 @@ class Room
         return (new Slugify())->slugify($this->roomProjectName);
     }
 
-    public function getRoomArea(): ?int
+    public function getRoomArea()
     {
         return $this->roomArea;
     }
@@ -121,8 +121,7 @@ class Room
 
     }
 
-    public function getRoomHeight(): ?int
-    {
+    public function getRoomHeight(){
         return $this->roomHeight;
     }
 

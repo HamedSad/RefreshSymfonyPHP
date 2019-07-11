@@ -76,4 +76,53 @@ class BathroomController extends AbstractController{
             ]); 
     }
 
+    /**
+    *@Route("/mesProjetsSDB/modification/{id}", name="projectBathroom.edit")
+    *@param Bathroom $project
+    *@param Request $request
+    *@return Response
+    */
+    public function edit(Bathroom $project, Request $request){
+        //methode create form pour utiliser le formulaire avec le nom du formulaire et la mon entité qui comprendra toutes mes variables
+        $form = $this->createForm(BathroomType::class, $project);
+
+        //utilisation de la methode handleRequest issue de la class Request
+        $form->handleRequest($request);
+
+        //le formulaire a t il été envoyé et est-il valide?
+        if($form->isSubmitted()  && $form->isValid()){
+            //Si les données sont valides il va mettre à jour la BDD
+            $this->em->flush();
+            //message de confirmation de création de projet 
+            $this->addFlash('success', 'Votre projet a bien été modifié');
+            //redirection de l'user vers admine.project.index
+            return $this->redirectToRoute('projects.index');
+        }
+
+        //puis je lui dis de se rendre sur la page admin/project/edit.html
+        return $this->render('projects/editProjectBathroom.html.twig', [
+            //On envoie le tout à la vue
+            'project'=> $project,
+            'form'=>$form->createView()
+            ]);     
+    }
+
+    /**
+    *@Route("/mesProjectSDB/suppression/{id}", name="projectBathroom.delete", methods="DELETE")
+    *@param Bathroom $bathroom
+    *@return Response
+    */
+    public function delete(Bathroom $bathroom, Request $request){
+        $submittedToken = $request->request->get('_token');
+        //vérification de la valeur du token csrf pour le form suppression soit bien valide
+        if ($this->isCsrfTokenValid('delete', $submittedToken)) {
+            $this->em->remove($bathroom);
+            $this->em->flush();
+            //message de confirmation de création de projet 
+            $this->addFlash('success', 'Votre projet a bien été supprimé');
+            //return new Response('Suppression');
+            }
+            
+            return $this->redirectToRoute('projects.index');
+    }
 }
