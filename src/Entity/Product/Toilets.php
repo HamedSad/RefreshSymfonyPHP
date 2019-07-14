@@ -6,7 +6,7 @@ use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ToiletsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Product\ToiletsRepository")
  */
 class Toilets
 {

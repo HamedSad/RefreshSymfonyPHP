@@ -86,6 +86,121 @@
                     </tbody>
                 </table>
             </div> 
+
+
+
+            {# Produits douche~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+            <div class="row">
+                <h1>Produits douche</h1>
+
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for shower in productShower %}
+                            <tr>
+                                <td>{{ shower.showerName }}</td>
+                                <td>
+                                    <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
+                                     {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
+
+                                    <form
+                                        method="post" action="{{ path('admin.delete.shower', {id: shower.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')">
+                                         <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+                                        <button class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table>
+            </div> 
+
+
+
+
+
+            {# Produits évier~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+            <div class="row">
+                    <h1>Produits évier</h1>
+    
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            
+                            {% for sink in productSink %}
+                            {# {% if sink.sinkPrice == 200 %} #}
+                                <tr>
+                                    <td>{{ sink.sinkName }}</td>
+                                    <td>
+                                        <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
+                                         {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
+    
+                                        <form
+                                            method="post" action="{{ path('admin.delete.sink', {id: sink.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')">
+                                             <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+                                            <button class="btn btn-danger">Supprimer</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {# {% endif %} #}
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div> 
+
+
+        {# Produits toilettes~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+        <div class="row">
+                <h1>Produits WC</h1>
+
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for toilets in productToilets %}
+                            <tr>
+                                <td>{{ toilets.toiletsName }}</td>
+                                <td>
+                                    <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
+                                     {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
+
+                                    <form
+                                        method="post" action="{{ path('admin.delete.toilets', {id: toilets.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')">
+                                         <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+                                        <button class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table>
+            </div> 
         
         </div>
 
