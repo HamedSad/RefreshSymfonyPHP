@@ -1,24 +1,20 @@
+Nos peintures
 {% for product in products %}
-
     {% if product.productType == 0 %}
-        Nos peintures
-        <div>
-            <div class="row justify-content-md-center">
-                <div class="col col-sm-6 col-lg-2">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ product.productUrlImage }}" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="{{ path('product.show', {slug: product.slug, id: product.id}) }}">
-                                <h6 class="card-title">{{ product.productName }}
-                                </h6>
-                            </a>
-                            <p class="card-text">{{ product.productPrice }}
-                                €</p>
-                        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-6 col-lg-2">
+                <div class="card">
+                    <img class="card-img-top" src="{{ product.productUrlImage }}" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="{{ path('product.show', {slug: product.slug, id: product.id}) }}">
+                            <h6 class="card-title">{{ product.productName }}
+                            </h6>
+                        </a>
+                        <p class="card-text">{{ product.productPrice }}
+                            €</p>
                     </div>
                 </div>
             </div>
         </div>
     {% endif %}
-
 {% endfor %}

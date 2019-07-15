@@ -7,31 +7,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\RoomRepository;
 use App\Repository\BathroomRepository;
-use App\Repository\Product\PaintRepository;
-use App\Repository\Product\BathtubRepository;
-use App\Repository\Product\ShowerRepository;
-use App\Repository\Product\SinkRepository;
-use App\Repository\Product\ToiletsRepository;
-use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Room;
-use Doctrine\Common\Persistence\ObjectManager;
-use App\Form\RoomType;
 use App\Repository\ProductRepository;
 
 class ProjectController extends AbstractController{
 
     //injection de dépendance pour le lier avec le repository
 public function __construct(RoomRepository $repository, BathroomRepository $repo, 
-PaintRepository $paintRepo, ProductRepository $productsRepo,
-BathtubRepository $bathtubRepo, ShowerRepository $showerRepo, SinkRepository $sinkRepo, ToiletsRepository $toiletsRepo)
+ProductRepository $productsRepo)
 {
     $this->repository = $repository;
     $this->repo = $repo;
-    $this->paintRepo = $paintRepo;
-    $this->bathtubRepo = $bathtubRepo;
-    $this->showerRepo = $showerRepo;
-    $this->sinkRepo = $sinkRepo;
-    $this->toiletsRepo = $toiletsRepo;
     $this->productsRepo = $productsRepo;
 }
 
@@ -43,22 +28,12 @@ BathtubRepository $bathtubRepo, ShowerRepository $showerRepo, SinkRepository $si
 public function index() : Response{
     $projectsRoom = $this->repository->findAllVisible();
     $projectsBathroom = $this->repo->findAllVisible();
-    $productPaint = $this->paintRepo->findAllVisiblePaint();
-    $productBathtub = $this->bathtubRepo->findAllVisibleBathtub();
-    $productShower = $this->showerRepo->findAllVisibleShower();
-    $productSink = $this->sinkRepo->findAllVisibleSink();
-    $productToilets = $this->toiletsRepo->findAllVisibleToilets();
     $products = $this->productsRepo->findAllVisible();
 
     return $this->render('projects/index.html.twig',[
         'current_menu' => 'projectsRoom',
         'projectsRoom' =>$projectsRoom,
         'projectsBathroom'=>$projectsBathroom,
-        'productPaint'=>$productPaint,
-        'productBathtub'=>$productBathtub,
-        'productShower'=>$productShower,
-        'productSink'=>$productSink,
-        'productToilets'=>$productToilets,
         'products' => $products
     ]);
 }

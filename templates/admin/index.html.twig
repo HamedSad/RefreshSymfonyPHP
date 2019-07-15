@@ -3,12 +3,13 @@
 {% block title 'Gérer les projets' %}
 
     {% block body %}
-        <div class="container mt-4">
+        <div
+            class="container mt-4">
 
             <!-- Est-ce que j'ai un user sur APP? si ou il m'affiche le bouton de deconnexion -->
-        {% if app.user %}           
-            <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
-        {% endif %}
+            {% if app.user %}
+                <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+            {% endif %}
 
             <h1>Gérer les produits</h1>
 
@@ -17,198 +18,45 @@
                 <div class="alert alert-success">{{message}}</div>
             {% endfor %}
 
-
-            {# Produits peinture~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
-            <div class="row">
-
-                <h1>Produits peinture</h1>
-
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>Titre</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for paint in productPaint %}
-                            <tr>
-                                <td>{{ paint.paintName }}</td>
-                                <td>
-                                    <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
-                                    {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a> #}
-
-                                        <form
-                                        method="post" action="{{ path('admin.delete.paint', {id: paint.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
-                                        <button class="btn btn-danger">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-
-            </div>
-
-
-            {# <div class="text-right">
-                                <!-- La route de la methode que l'on va utiliser -->
-                                <a href="{{ path('admin.project.new') }}" class="btn btn-primary">Créer un nouveau projet</a>
-                            </div> #}
-
-            {# Produits baignoire~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
-            <div class="row">
-                <h1>Produits baignoire</h1>
-
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>Titre</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for bathtub in productBathtub %}
-                            <tr>
-                                <td>{{ bathtub.bathtubName }}</td>
-                                <td>
-                                    <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
-                                     {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
-
-                                        <form
-                                        method="post" action="{{ path('admin.delete.bathtub', {id: bathtub.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
-                                        <button class="btn btn-danger">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div> 
-
-
-
-            {# Produits douche~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
-            <div class="row">
-                <h1>Produits douche</h1>
-
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>Titre</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        {% for shower in productShower %}
-                            <tr>
-                                <td>{{ shower.showerName }}</td>
-                                <td>
-                                    <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
-                                     {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
-
-                                    <form
-                                        method="post" action="{{ path('admin.delete.shower', {id: shower.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')">
-                                         <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
-                                        <button class="btn btn-danger">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody> 
-                </table>
-            </div> 
-
-
-
-
-
-            {# Produits évier~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
-            <div class="row">
-                    <h1>Produits évier</h1>
-    
-                    <table class="table table-stripped">
-                        <thead>
-                            <tr>
-                                <th>Titre</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-    
-                        <tbody>
-                            
-                            {% for sink in productSink %}
-                            {# {% if sink.sinkPrice == 200 %} #}
-                                <tr>
-                                    <td>{{ sink.sinkName }}</td>
-                                    <td>
-                                        <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
-                                         {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
-    
-                                        <form
-                                            method="post" action="{{ path('admin.delete.sink', {id: sink.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')">
-                                             <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
-                                            <button class="btn btn-danger">Supprimer</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                {# {% endif %} #}
-                            {% endfor %}
-                            
-                        </tbody>
-                    </table>
-                </div> 
-
-
-        {# Produits toilettes~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
-        <div class="row">
-                <h1>Produits WC</h1>
-
-                <table class="table table-stripped">
-                    <thead>
-                        <tr>
-                            <th>Titre</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        {% for toilets in productToilets %}
-                            <tr>
-                                <td>{{ toilets.toiletsName }}</td>
-                                <td>
-                                    <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
-                                     {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
-
-                                    <form
-                                        method="post" action="{{ path('admin.delete.toilets', {id: toilets.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')">
-                                         <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
-                                        <button class="btn btn-danger">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody> 
-                </table>
-            </div> 
-        
         </div>
 
 
-    {% endblock %}
+        {# <div class="text-right">
+                                        <!-- La route de la methode que l'on va utiliser -->
+                                        <a href="{{ path('admin.project.new') }}" class="btn btn-primary">Créer un nouveau projet</a>
+                                    </div> #}
+
+        {# Produits ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
+        <div class="row">
+            <h1>Produits</h1>
+
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{ product.productName }}</td>
+                            <td>
+                                <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
+                                {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
+
+                                    <form
+                                    method="post" action="{{ path('admin.delete', {id: product.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+                                    <button class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

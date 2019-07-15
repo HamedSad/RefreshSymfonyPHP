@@ -11,7 +11,7 @@ use App\Repository\Product\PaintRepository;
 use App\Entity\Room;
 use App\Form\RoomType;
 use Doctrine\Common\Persistence\ObjectManager;
-
+use App\Repository\ProductRepository;
 
 //Création de ma classe RoomController
 class RoomController extends AbstractController{
@@ -23,10 +23,10 @@ class RoomController extends AbstractController{
 private $repository;
 
 //injection de dépendance pour le lier avec le repository
-public function __construct(RoomRepository $repository, PaintRepository $paintRepo, 
+public function __construct(RoomRepository $repository, ProductRepository $productRepository,
 ObjectManager $em){
     $this->repository = $repository;
-    $this->paintRepo = $paintRepo;
+    $this->productRepository = $productRepository;
     $this->em = $em;
 }
 
@@ -38,11 +38,11 @@ ObjectManager $em){
 public function show($slug, $id) : Response{
 
     $project =$this->repository->find($id);
-    $productPaint = $this->paintRepo->findAllVisiblePaint();
+    $products = $this->productRepository->findAllVisible();
     return $this->render('projects/showRoom.index.html.twig',[
         'project' => $project,
         'current_menu' => 'projects',
-        'productPaint'=>$productPaint
+        'products' => $products
     ]);
 
     }
