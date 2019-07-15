@@ -22,10 +22,10 @@ class UserFixtures extends Fixture{
         // $manager->persist($product);
 
         $user = new User();
-        $user->setUsername('demo');
-        $user->setEmail('demo@gmail.com');
+        $user->setUsername('');
+        $user->setEmail('');
         //encoder a une methode encodePassword
-        $user->setPassword($this->encoder->encodePassword($user, 'demo'));
+        $user->setPassword($this->encoder->encodePassword($user, ''));
         $manager->persist($user);
         $manager->flush();
     }

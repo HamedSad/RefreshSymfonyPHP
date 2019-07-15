@@ -18,15 +18,15 @@
                 <div class="alert alert-success">{{message}}</div>
             {% endfor %}
 
+        
+
+
+        <div class="text-right">
+            <!-- La route de la methode que l'on va utiliser -->
+            <a href="{{ path('admin.product.new') }}" class="btn btn-primary">Créer un nouveau produit</a>
         </div>
 
 
-        {# <div class="text-right">
-                                        <!-- La route de la methode que l'on va utiliser -->
-                                        <a href="{{ path('admin.project.new') }}" class="btn btn-primary">Créer un nouveau projet</a>
-                                    </div> #}
-
-        {# Produits ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #}
         <div class="row">
             <h1>Produits</h1>
 
@@ -44,7 +44,7 @@
                             <td>{{ product.productName }}</td>
                             <td>
                                 <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
-                                {# <a href="{{ path('product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>  #}
+                                <a href="{{ path('admin.product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>
 
                                     <form
                                     method="post" action="{{ path('admin.delete', {id: product.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
@@ -59,4 +59,5 @@
             </table>
         </div>
     </div>
+</div>
 {% endblock %}
