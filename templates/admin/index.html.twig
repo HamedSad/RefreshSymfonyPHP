@@ -4,6 +4,12 @@
 
     {% block body %}
         <div class="container mt-4">
+
+            <!-- Est-ce que j'ai un user sur APP? si ou il m'affiche le bouton de deconnexion -->
+        {% if app.user %}           
+            <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+        {% endif %}
+
             <h1>Gérer les produits</h1>
 
             <!-- Pour toutes les actions ayant un message de confirmation -->

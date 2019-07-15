@@ -1,5 +1,5 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers  
     providers:
         from_database:
             entity:
@@ -11,15 +11,33 @@ security:
             security: false
         main:
             anonymous: true
+            # lorsque je suis sur l page logout, je suis déconnecté et redirigé vers la page d'accueil /
+            logout:
+                path: /logout
+                target: /
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
-            http_basic: true
+            # Systeme de mot de passe
+            # http_basic: true
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+
+            form_login:
+                check_path: login
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    # niveaux d'accès de l'application 
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/mesProjets, roles: ROLE_USER }
+
+    # definir les encodeurs à utiliser
+    encoders:
+        # On définit la sécurité à apporter
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+        
+        
