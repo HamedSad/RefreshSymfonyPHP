@@ -2,44 +2,51 @@
 
 {% block title 'Mes projets' %}
 
-{% block body %}
+    {% block body %}
 
-    <!-- Pour toutes les actions ayant un message de confirmation -->
-    {% for message in app.flashes('success')%}
-        <div class="alert alert-success">{{message}}</div>
-    {% endfor %}
-
-    <h1>Mes projets salle de bain :<h1>
-        {% for project in projectsBathroom %}
-        <a href="{{ path('projectBath.show', {slug: project.slug, id: project.id}) }}">
-            {{ project.bathroomProjectName }}</a> <br>
+        <!-- Pour toutes les actions ayant un message de confirmation -->
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">{{message}}</div>
         {% endfor %}
 
-        <div class="text-right">
-            <!-- La route de la methode que l'on va utiliser -->
-            <a href="{{ path('projectBathroom.new') }}" class="btn btn-primary">Créer un nouveau projet salle de bain</a>
-        </div>
+        <h1>Mes projets salle de bain :<h1>
+                {% for project in projectsBathroom %}
+                    <a href="{{ path('projectBath.show', {slug: project.slug, id: project.id}) }}">
+                        {{ project.bathroomProjectName }}</a>
+                    <br>
+                {% endfor %}
 
-        <br><h1>Mes projets chambre:<h1>
-        {% for project in projectsRoom %}
-        <a href="{{ path('projectRoom.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a>
-        <br>
-        {% endfor %}
+                <div
+                    class="text-right">
+                    <!-- La route de la methode que l'on va utiliser -->
+                    <a href="{{ path('projectBathroom.new') }}" class="btn btn-primary">Créer un nouveau projet salle de bain</a>
+                </div>
 
-        <div class="text-right">
-            <!-- La route de la methode que l'on va utiliser -->
-            <a href="{{ path('projectRoom.new') }}" class="btn btn-primary">Créer un nouveau projet chambre</a>
-        </div>
+                <br><h1>Mes projets chambre:<h1>
+                        {% for project in projectsRoom %}
+                            <a href="{{ path('projectRoom.show', {slug: project.slug, id: project.id}) }}">{{ project.roomProjectName }}</a>
+                            <br>
+                        {% endfor %}
 
-    
-    {% include 'product/paint.index.html.twig' %}<br> 
-    
-    {% include 'product/bathtub.index.html.twig' %}<br>
+                        <div
+                            class="text-right">
+                            <!-- La route de la methode que l'on va utiliser -->
+                            <a href="{{ path('projectRoom.new') }}" class="btn btn-primary">Créer un nouveau projet chambre</a>
+                        </div>
 
-    {% include 'product/shower.index.html.twig' %}
 
-    {% include 'product/sink.index.html.twig' %}
+                        Recommandations :<br>
 
-    {% include 'product/toilets.index.html.twig' %}
+                        {% include 'product/paint.index.html.twig' %}<br>
 
-{% endblock %}
+                        {% include 'product/bathtub.index.html.twig' %}<br>
+
+                        {% include 'product/shower.index.html.twig' %}<br>
+
+                        {% include 'product/sink.index.html.twig' %}<br>
+
+                        {% include 'product/toilets.index.html.twig' %}
+                        <br>
+
+
+                    {% endblock %}

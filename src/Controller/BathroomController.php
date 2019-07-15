@@ -15,11 +15,11 @@ use App\Repository\Product\ToiletsRepository;
 use App\Form\BathroomType;
 use App\Entity\Bathroom;
 use Doctrine\Common\Persistence\ObjectManager;
-
+use App\Repository\ProductRepository;
 
 class BathroomController extends AbstractController{
 
-    public function __construct(BathroomRepository $repository, PaintRepository $paintRepo, 
+    public function __construct(BathroomRepository $repository, ProductRepository $productRepository, PaintRepository $paintRepo, 
         BathtubRepository $bathtubRepo, ShowerRepository $showerRepo, SinkRepository $sinkRepo, 
         ToiletsRepository $toiletsRepo, ObjectManager $em){
             $this->repository = $repository;
@@ -28,6 +28,7 @@ class BathroomController extends AbstractController{
             $this->showerRepo = $showerRepo;
             $this->sinkRepo = $sinkRepo;
             $this->toiletsRepo = $toiletsRepo;
+            $this->productRepository = $productRepository;
             $this->em = $em;
     }
 
@@ -43,6 +44,7 @@ class BathroomController extends AbstractController{
         $productShower = $this->showerRepo->findAllVisibleShower();
         $productSink = $this->sinkRepo->findAllVisibleSink();
         $productToilets = $this->toiletsRepo->findAllVisibleToilets();
+        $products = $this->productRepository->findAllVisible();
 
         return $this->render('projects/showSDB.index.html.twig',[
             'project' => $project,
@@ -51,7 +53,8 @@ class BathroomController extends AbstractController{
             'productBathtub'=>$productBathtub,
             'productShower'=>$productShower,
             'productSink'=>$productSink,
-            'productToilets'=>$productToilets
+            'productToilets'=>$productToilets,
+            'products' => $products
         ]);
 
     }

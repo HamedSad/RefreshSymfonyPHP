@@ -1,31 +1,22 @@
-<h1>Nos douches</h1>
-<hr>
-{# <div class="card-deck">
-    {% for shower in productShower %}
-        <div class="card">
-            <img class="card-img-top" src="{{ shower.showerUrlImage }}" alt="Card image cap">
-            <div class="card-body">
-                <a href="{{ path('productShower.show', {slug: shower.slug, id: shower.id}) }}">
-                    <h6 class="card-title">{{ shower.showerName }} </h6></a>
-                <p class="card-text">{{ shower.showerPrice }} €</p>
+{% for product in products %}
+    {% if product.productType == 2 %}
+        Nos douches
+        <div>
+            <div class="row justify-content-md-center">
+                <div class="col col-sm-6 col-lg-2">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ product.productUrlImage }}" alt="Card image cap">
+                        <div class="card-body">
+                            <a href="{{ path('product.show', {slug: product.slug, id: product.id}) }}">
+                                <h6 class="card-title">{{ product.productName }}
+                                </h6>
+                            </a>
+                            <p class="card-text">{{ product.productPrice }}
+                                €</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    {% endfor %}     
-</div> #}
-
-    <div> 
-        <div class="row justify-content-md-center">
-            {% for shower in productShower %}
-            <div class="col col-sm-6 col-lg-2">
-                <div class="card">
-                    <img class="card-img-top" src="{{ shower.showerUrlImage }}">
-                    <div class="card-body">
-                        <a href="{{ path('productShower.show', {slug: shower.slug, id: shower.id}) }}">
-                        <h6 class="card-title">{{ shower.showerName }} </h6></a>
-                        <p class="card-text">{{ shower.showerPrice }} €</p>
-                    </div>
-                </div> 
-            </div> 
-              {% endfor %} 
-        </div>       
-    </div>
+    {% endif %}
+{% endfor %}

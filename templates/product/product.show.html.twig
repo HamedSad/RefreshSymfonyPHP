@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title product.productName %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{product.productName}}<h1>
+            Prix : {{product.productPrice}} €<br>
+            <img src="{{product.productUrlImage}}">      
+    </div>
+</div>
+
+{% endblock %}

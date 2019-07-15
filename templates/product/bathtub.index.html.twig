@@ -1,32 +1,22 @@
-<h1>Nos baignoires</h1>
-<hr>
-{# <div class="card-deck">
-    {% for bathtub in productBathtub %}
-        <div class="card">
-            <img class="card-img-top" src="{{ bathtub.bathtubUrlImage }}" alt="Card image cap">
-            <div class="card-body">
-                <a href="{{ path('productBathtub.show', 
-                {slug: bathtub.slug, id: bathtub.id}) }}">
-                    <h6 class="card-title">{{ bathtub.bathtubName }} </h6></a>
-                <p class="card-text">{{ bathtub.bathtubPrice }} €</p>
+{% for product in products %}
+    {% if product.productType == 1 %}
+        Nos baignoires
+        <div>
+            <div class="row justify-content-md-center">
+                <div class="col col-sm-6 col-lg-2">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ product.productUrlImage }}" alt="Card image cap">
+                        <div class="card-body">
+                            <a href="{{ path('product.show', {slug: product.slug, id: product.id}) }}">
+                                <h6 class="card-title">{{ product.productName }}
+                                </h6>
+                            </a>
+                            <p class="card-text">{{ product.productPrice }}
+                                €</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    {% endfor %}     
-</div> #}
-
-    <div> 
-        <div class="row justify-content-md-center">
-            {% for bathtub in productBathtub %}
-            <div class="col col-sm-6 col-lg-2">
-                <div class="card">
-                    <img class="card-img-top" src="{{ bathtub.bathtubUrlImage }}">
-                    <div class="card-body">
-                        <a href="{{ path('productBathtub.show', {slug: bathtub.slug, id: bathtub.id}) }}">
-                        <h6 class="card-title">{{ bathtub.bathtubName }} </h6></a>
-                        <p class="card-text">{{ bathtub.bathtubPrice }} €</p>
-                    </div>
-                </div> 
-            </div> 
-              {% endfor %} 
-        </div>       
-    </div>
+    {% endif %}
+{% endfor %}

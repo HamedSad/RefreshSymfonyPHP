@@ -16,11 +16,13 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Room;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\RoomType;
+use App\Repository\ProductRepository;
 
 class ProjectController extends AbstractController{
 
     //injection de dépendance pour le lier avec le repository
-public function __construct(RoomRepository $repository, BathroomRepository $repo, PaintRepository $paintRepo, 
+public function __construct(RoomRepository $repository, BathroomRepository $repo, 
+PaintRepository $paintRepo, ProductRepository $productsRepo,
 BathtubRepository $bathtubRepo, ShowerRepository $showerRepo, SinkRepository $sinkRepo, ToiletsRepository $toiletsRepo)
 {
     $this->repository = $repository;
@@ -30,6 +32,7 @@ BathtubRepository $bathtubRepo, ShowerRepository $showerRepo, SinkRepository $si
     $this->showerRepo = $showerRepo;
     $this->sinkRepo = $sinkRepo;
     $this->toiletsRepo = $toiletsRepo;
+    $this->productsRepo = $productsRepo;
 }
 
 /**
@@ -45,6 +48,7 @@ public function index() : Response{
     $productShower = $this->showerRepo->findAllVisibleShower();
     $productSink = $this->sinkRepo->findAllVisibleSink();
     $productToilets = $this->toiletsRepo->findAllVisibleToilets();
+    $products = $this->productsRepo->findAllVisible();
 
     return $this->render('projects/index.html.twig',[
         'current_menu' => 'projectsRoom',
@@ -54,7 +58,8 @@ public function index() : Response{
         'productBathtub'=>$productBathtub,
         'productShower'=>$productShower,
         'productSink'=>$productSink,
-        'productToilets'=>$productToilets
+        'productToilets'=>$productToilets,
+        'products' => $products
     ]);
 }
 
