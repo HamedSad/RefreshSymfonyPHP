@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Mon panier' %}
+
+    {% block body %}
+
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">{{message}}</div>
+        {% endfor %}
+
+        {% for basket in products %}
+        {# {% set sousTotal = 0 + basket.productQuantity %} #}
+            <img src="{{ basket.productUrlImage}}"<br>
+            {{ basket.productName}}<br>
+            {{ basket.productPrice}} €<br>
+            X {{ basket.productQuantity}}<br>
+            {# = {{sousTotal}} € #}
+            
+        <form method="post" action="{{ path('basket.delete', {id: basket.id}) }}" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> 
+            <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
+            <input name="_method" type="hidden" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
+            <button class="btn btn-danger">Supprimer</button><hr>
+        </form>
+        
+        {% endfor %}
+
+
+    {% endblock %}

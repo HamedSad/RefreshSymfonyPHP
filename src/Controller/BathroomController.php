@@ -102,7 +102,6 @@ class BathroomController extends AbstractController{
             $this->em->flush();
             //message de confirmation de création de projet 
             $this->addFlash('success', 'Votre projet a bien été supprimé');
-            //return new Response('Suppression');
             }
             
             return $this->redirectToRoute('projects.index');

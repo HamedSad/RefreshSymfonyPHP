@@ -9,6 +9,8 @@
             <div class="alert alert-success">{{message}}</div>
         {% endfor %}
 
+        <a href="{{ path('basket.index')}}">Panier</a>
+
         <h1>Mes projets salle de bain :<h1>
                 {% for project in projectsBathroom %}
                     <a href="{{ path('projectBath.show', {slug: project.slug, id: project.id}) }}">

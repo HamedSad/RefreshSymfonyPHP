@@ -2,13 +2,30 @@
 
 {% block title product.productName %}
 
-{% block body %}
-<div class="jumbotron">
-    <div class="container">
-        <h1>{{product.productName}}<h1>
-            Prix : {{product.productPrice}} €<br>
-            <img src="{{product.productUrlImage}}">      
-    </div>
-</div>
+    {% block body %}
+        <div class="jumbotron">
+                <form
+                {# method="post" action="{{ path('basket.add') }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> #}
+                
+                {# <input name="_method" type="hidden" value="DELETE"> #}
+                <input type="text" id="productName" name="productName" value="{{product.productName}}">
+                <input type="text" id="productPrice" name="productPrice" value="{{product.productPrice}}">
+                <input type="text" id="userId" name="userId" value="1">
+                <button class="btn btn-danger">Ajouter au panier</button>
+            </form>
 
-{% endblock %}
+
+
+
+            <div class="container">
+                <h1>{{product.productName}}<h1>
+                        Prix :
+                        {{product.productPrice}}
+                        €<br>
+                        <img src="{{product.productUrlImage}}">
+                    </div>
+                </div>
+
+                
+
+            {% endblock %}

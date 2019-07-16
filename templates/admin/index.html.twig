@@ -46,8 +46,7 @@
                                 <!-- Création d'une nouvelle route qu'il faudra mettre en place dans le controller -->
                                 <a href="{{ path('admin.product.edit', {id: product.id}) }}" class="btn btn-secondary">Editer</a>
 
-                                    <form
-                                    method="post" action="{{ path('admin.delete', {id: product.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
+                                <form method="post" action="{{ path('admin.delete', {id: product.id}) }}" style="display: inline-block" method="post" onsubmit="return confirm('Etes-vous vraiment sure?')"> <!-- Fonctionnalité de symfony permettant de donner une méthode différante de la methode post, on mettra une methode DELETE -->
                                     <input name="_method" type="hidden" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
                                     <button class="btn btn-danger">Supprimer</button>
