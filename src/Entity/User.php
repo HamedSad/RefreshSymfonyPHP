@@ -32,6 +32,12 @@ class User implements UserInterface, \Serializable
      */
     private $password;
 
+    // /**
+    //  * @var array
+    //  *
+    //  */
+    // private $roles = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +95,12 @@ class User implements UserInterface, \Serializable
      */
     public function getRoles(){
         return ['ROLE_ADMIN'];
+    //     $roles = $this->roles;
+    //     if (empty($roles)){
+    //         $roles[] = 'ROLE_ADMIN';
+    //     }
+    //     return array_unique($roles);
+    //  }
      }
 
 

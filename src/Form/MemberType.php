@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InscriptionType extends AbstractType
+class MemberType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,6 +22,7 @@ class InscriptionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Member::class,
+            'translation_domain' =>'formRoom'
         ]);
     }
 }

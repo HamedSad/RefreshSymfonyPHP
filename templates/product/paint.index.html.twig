@@ -1,20 +1,18 @@
-Nos peintures
-{% for product in products %}
-    {% if product.productType == 0 %}
-        <div class="row justify-content-md-center">
-            <div class="col col-sm-6 col-lg-2">
-                <div class="card">
-                    <img class="card-img-top" src="{{ product.productUrlImage }}" alt="Card image cap">
-                    <div class="card-body">
+<br><br> Nos peintures : <br>
+    <div class="contain">
+        <div class="row__products">
+            <div class="row__inner">      
+            {% for product in products %}
+                {% if product.productType == 0 %}
+                <div class="tile">
+                    <div class="tile__media">                 
                         <a href="{{ path('product.show', {slug: product.slug, id: product.id}) }}">
-                            <h6 class="card-title">{{ product.productName }}
-                            </h6>
-                        </a>
-                        <p class="card-text">{{ product.productPrice }}
-                            €</p>
+                        <img class="tile__img" src="{{ product.productUrlImage }}"<br>              
                     </div>
-                </div>
+                    <p> {{ product.productName }} <br> {{ product.productPrice }} €</p>
+                </div> 
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
-    {% endif %}
-{% endfor %}
+    </div>
