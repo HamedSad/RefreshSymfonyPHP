@@ -30,6 +30,17 @@ class BasketController extends AbstractController{
         ]);
     }
 
+     /**
+     * @Route("/panier", name="basket.nbr")
+     * @return Response
+     */
+    public function nombre() : Response {
+        $qb = $this->basketRepository->countByAccount();
+        return $this->render('basket.index.html.twig', [
+            'qb' => $qb
+        ]);
+    }
+
     // /**
     // *@Route("/Panier/Ajouter", name="basket.add")
     // *@param Basketm $basket
@@ -78,5 +89,7 @@ class BasketController extends AbstractController{
             
             return $this->redirectToRoute('basket.index');
     }
+
+      
 
 }

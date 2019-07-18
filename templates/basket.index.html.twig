@@ -8,7 +8,11 @@
             <div class="alert alert-success">{{message}}</div>
         {% endfor %}
 
+        {% set count = 0 %}
+        
         {% for basket in products %}
+            {% set count = count + 1 %}
+        
         {# {% set sousTotal = 0 + basket.productQuantity %} #}
             <img src="{{ basket.productUrlImage}}"<br>
             {{ basket.productName}}<br>
@@ -25,5 +29,13 @@
         
         {% endfor %}
 
-
+        {% if count == 0 %}
+            Panier vide
+        {% elseif count == 1 %}
+            Il y a 1 article
+        {% else %}
+        Il y a {{ count }} articles
+        
+        {% endif %}
+        
     {% endblock %}

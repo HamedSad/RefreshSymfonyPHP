@@ -29,6 +29,12 @@ class BasketRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function countByAccount(){
+        $qb = $this->createQueryBuilder('e');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+        }
+
     // /**
     //  * @return Basket[] Returns an array of Basket objects
     //  */
